@@ -1,0 +1,99 @@
+
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+/* Alinhamento com Flexbox */
+.navbar-top {
+    display: flex;
+    align-items: center;  /* Alinha os itens verticalmente */
+
+}
+
+.navbar-top .logo {
+    height: 90px;
+    width: 90px;
+    margin-left: 15px;
+}
+
+.navbar-top .shopping-cart,
+.navbar-top .user-profile {
+    height: 40px;
+    width: 40px;
+    margin-right: 30px;
+}
+
+/* Centralizando a search-box */
+.navbar-top .search-box {
+    padding: 14px 20px;
+    position: relative;
+    margin: 0 auto; /* Centraliza a search-box */
+}
+
+.navbar-top .search-box input[type="text"] {
+    padding: 10px 40px 10px 10px;
+    font-size: 17px;
+    border: none;
+    width: 700px;
+}
+
+.navbar-top .search-box input:focus {
+    outline: none;
+}
+
+.navbar-top .search-box button {
+    position: absolute;
+    right: 35px;
+    top: 35%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.navbar-top .search-box button:focus {
+    outline: none;
+}
+
+.navbar-top .search-box button img {
+    height: 20px;
+    width: 20px;
+}
+
+/* Estilo para a linha que separa a parte superior da inferior */
+
+.navbar .line {
+    height: 1px;
+    background-color: #474747; /* Cor da linha */
+    margin: 0 0 0 0; /* Espaço entre as divs e a linha */
+}
+
+/* Estilo para a parte inferior da navbar */
+
+.navbar-bottom {
+    display: flex;
+
+    justify-content: center;
+}
+
+.navbar-bottom .navbar-links {
+    list-style-type: none;
+}
+
+.navbar-bottom .navbar-links li {
+    float: left;
+}
+
+.navbar-bottom .navbar-links li p {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+}
+
+.navbar-bottom .navbar-links li p:hover {
+    background-color: #575757;
+}

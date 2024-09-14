@@ -1,0 +1,43 @@
+/* Card.css */
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: 0.2s;
+    width: 300px; /* Definindo uma largura fixa */
+    margin: 16px;
+    display: inline-block;
+    background-color: white;
+}
+
+.card:hover {
+    transform: scale(1.007);
+}
+
+.card .card-image {
+    height: 200px; /* Altura fixa para o contêiner da imagem */
+}
+
+.card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção da imagem e preenche o espaço */
+}
+
+.card .card-footer {
+    padding: 16px;
+    text-align: center;
+}
+
+.card .card-footer h2 {
+    font-size: 1.5em;
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.card .card-footer p {
+    font-size: 1.2em;
+    color: #666;
+}
