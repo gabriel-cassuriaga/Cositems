@@ -4,9 +4,8 @@ import './card.css'
 interface CardProps {
     id: string | undefined,
     name: string,
-    image: string,
+    image: string[],
     price: number
-
 
 }
 
@@ -16,7 +15,7 @@ export function Card({ id, image, name, price }: CardProps) {
 
             <div className="card-image">
                 <Link to={`/produto/${id}`} >
-                    <img src={image}></img>
+                    <img src={image[0]}></img>
                 </Link>
             </div>
 

@@ -1,3 +1,5 @@
+import './Home.css'
+
 import { useState } from "react";
 import { useProductData } from "../../hooks/useProductData";
 import { Card } from "../../components/card/card";
@@ -17,21 +19,23 @@ export function Home() {
     return (
 
         <>
-
-            <div className="container">
-                <div className="card-grid">
-                    {data?.map(productData => <Card
-                        id={productData.id}
-                        image={productData.image}
-                        name={productData.name}
-                        price={productData.price} />
-                    )}
+            <div className="teste">
+            <div className="home-container">
+                <div className="product-card-container">
+                    <div className="card-grid">
+                        {data?.map(productData => <Card
+                            id={productData.id}
+                            image={productData.image}
+                            name={productData.name}
+                            price={productData.price} />
+                        )}
+                    </div>
                 </div>
-
-                {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
-                <button onClick={handleOpenModal}>Novo Produto</button>
             </div>
-
+            </div>
+            
+            {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
+            <button onClick={handleOpenModal}>Novo Produto</button>
 
         </>
 

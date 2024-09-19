@@ -1,7 +1,7 @@
 package com.fundatec.cositems.model;
 
 import java.math.BigDecimal;
- 
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -24,7 +24,7 @@ public class ProductModel {
     @Id
     private String id;
     private String name;
-    private String image;
+    private List<String> image;
     private String description;
     private BigDecimal price;
     

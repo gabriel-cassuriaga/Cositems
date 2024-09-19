@@ -51,7 +51,7 @@ public class ProductController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
-    public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id) {
+    public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id) throws Exception {
         ProductModel product = repository.findById(id).orElse(null);
 
         product.setName(data.name());
