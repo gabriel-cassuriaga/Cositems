@@ -6,4 +6,6 @@ import com.fundatec.cositems.model.ShoppingCartModel;
 
 public interface ShoppingCartRepository extends MongoRepository<ShoppingCartModel, String>{
     
+    
+
 }
