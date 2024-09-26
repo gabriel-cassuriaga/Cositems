@@ -1,16 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
 
 
-
-::-ms-reveal {
-    display: none;
-}
-
-
 .form-card {
     width: 90%;
     max-width: 400px;
-    background-color: #ffffff;
+    background-color: #e7e4e4;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -22,7 +16,7 @@
     gap: 10px;
 }
 
-.title-login, .forgot-password-link {
+.title-login {
     text-align: center;
     margin: 0;
     color: #505050;
@@ -37,11 +31,19 @@
     gap: 0.5em;
     border-radius: 5px;
     padding: 0.6em;
-    border: none;
-    outline: none;
     color: #333333;
     background-color: #f1f1f1;
 }
+
+.field img{
+    height: 25px;
+
+}
+
+.field .icon-eye {
+    cursor: pointer;
+}
+
 
 .input-field {
     border: none;
@@ -66,19 +68,22 @@
     margin-top: 8px;
 }
 
-.btn-login:hover {
-    background-color: #038c3e;
-}
-
-.forgot-password-link {
+.forgot-password-link,
+.register-link {
     color: #04a454;
     text-decoration: none;
     font-size: 1.1em;
     transition: color 0.3s;
     text-align: center;
+
 }
 
-.forgot-password-link:hover {
+.btn-login:hover {
+    background-color: #038c3e;
+}
+
+.forgot-password-link:hover,
+.register-link:hover {
     color: #038c3e;
 }
 

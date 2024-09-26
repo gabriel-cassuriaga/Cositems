@@ -1,5 +1,3 @@
-
-
 .navbar {
     background-color: #333;
     overflow: hidden;
@@ -10,7 +8,8 @@
 /* Alinhamento com Flexbox */
 .navbar-top {
     display: flex;
-    align-items: center;  /* Alinha os itens verticalmente */
+    align-items: center;
+    /* Alinha os itens verticalmente */
 
 }
 
@@ -31,7 +30,8 @@
 .navbar-top .search-box {
     padding: 14px 20px;
     position: relative;
-    margin: 0 auto; /* Centraliza a search-box */
+    margin: 0 auto;
+    /* Centraliza a search-box */
 }
 
 .navbar-top .search-box input[type="text"] {
@@ -68,8 +68,10 @@
 
 .navbar .line {
     height: 1px;
-    background-color: #474747; /* Cor da linha */
-    margin: 0 0 0 0; /* Espaço entre as divs e a linha */
+    background-color: #474747;
+    /* Cor da linha */
+    margin: 0 0 0 0;
+    /* Espaço entre as divs e a linha */
 }
 
 /* Estilo para a parte inferior da navbar */
@@ -80,20 +82,33 @@
     justify-content: center;
 }
 
+
 .navbar-bottom .navbar-links {
     list-style-type: none;
+}
+
+.navbar-bottom .navbar-links li a {
+    color: inherit;          /* Remove a cor padrão */
+    text-decoration: none;   /* Remove o sublinhado */
+    background: none;       /* Remove o fundo (se houver) */
+    border: none;           /* Remove bordas (se houver) */
+    padding: 0;             /* Remove qualquer preenchimento */
+    margin: 0;              /* Remove qualquer margem */
+    display: inline;        /* Garante que o comportamento de inline seja mantido */
 }
 
 .navbar-bottom .navbar-links li {
     float: left;
 }
 
-.navbar-bottom .navbar-links li p {
+.navbar-bottom .navbar-links li p,
+.navbar-bottom .navbar-links li a {
     color: white;
     text-align: center;
     padding: 14px 20px;
 }
 
-.navbar-bottom .navbar-links li p:hover {
+.navbar-bottom .navbar-links li p:hover,
+.navbar-bottom .navbar-links li a:hover  {
     background-color: #575757;
 }

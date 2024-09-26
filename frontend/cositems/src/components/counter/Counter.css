@@ -1,0 +1,38 @@
+.counter-section {
+    width: 140px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    border-radius: 10px;
+    border: 0.5px solid gray; /* Define uma borda simples de 1px, linha sólida, cor preta */
+
+}
+
+.counter-section img {
+    width: 20px;
+
+}
+
+.counter-section button {
+    all: unset;
+    cursor: pointer;
+    padding-top: 5px;
+}
+
+.counter-section .add-button {
+    border-left: 0.5px solid gray;
+    padding-left: 5px;
+}
+
+.counter-section .remove-button {
+    border-right: 0.5px solid gray;
+    padding-right: 5px;
+}
+
+.counter-section .count {
+    width: 70px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassa as bordas */
+
+}

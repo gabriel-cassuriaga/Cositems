@@ -1,8 +1,9 @@
-import './navbar.css'
+import './Navbar.css'
 import logoImg from '../../assets/images/logo.png';
 import profileImg from '../../assets/images/profile.png';
 import cartImg from '../../assets/images/cart.png';
 import searchImg from '../../assets/images/search.png';
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,7 +12,7 @@ export function Navbar() {
         <nav className="navbar">
             <div className="navbar-top">
 
-                <img className="logo" src={logoImg} alt="imagem da logo com uma personagem de estilo anime"/>
+                <img className="logo" src={logoImg} alt="imagem da logo com uma personagem de estilo anime" />
 
                 <div className="search-box">
                     <input type="text" placeholder="Pesquisar..." />
@@ -20,9 +21,11 @@ export function Navbar() {
                     </button>
                 </div>
 
-                <img className="user-profile" src={profileImg} alt="icone de usuario"/>
-
-                <img className="shopping-cart" src={cartImg} alt="icone de carrinho de supermercado"/>
+                <img className="user-profile" src={profileImg} alt="icone de usuario" />
+                
+                <Link to={"/cart"}>
+                    <img className="shopping-cart" src={cartImg} alt="icone de carrinho de supermercado" />
+                </Link>
 
             </div>
 
@@ -30,6 +33,9 @@ export function Navbar() {
 
             <div className="navbar-bottom">
                 <ul className="navbar-links">
+                    <li>
+                        <Link to={"/"}>Home</Link>
+                    </li>
                     <li>
                         <p>Produtos</p>
                     </li>

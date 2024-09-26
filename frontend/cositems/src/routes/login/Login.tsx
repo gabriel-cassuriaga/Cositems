@@ -1,4 +1,4 @@
-import { LoginForm } from "../../components/loginform/loginForm";
+import { LoginForm } from "../../components/login-form/LoginForm";
 import './Login.css'
 
 export function Login() {

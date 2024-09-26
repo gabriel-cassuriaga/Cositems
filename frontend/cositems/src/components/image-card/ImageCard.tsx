@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './card.css'
+import './ImageCard.css'
 
 interface CardProps {
     id: string | undefined,
@@ -9,7 +9,7 @@ interface CardProps {
 
 }
 
-export function Card({ id, image, name, price }: CardProps) {
+export function ImageCard({ id, image, name, price }: CardProps) {
     return (
         <div className="card">
 
