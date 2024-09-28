@@ -4,8 +4,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fundatec.cositems.dto.ProductRequestDTO;
 import com.fundatec.cositems.dto.ProductResponseDTO;
+import com.fundatec.cositems.exceptions.EmptyExceptions;
 import com.fundatec.cositems.model.ProductModel;
 import com.fundatec.cositems.repository.ProductRepository;
+import com.fundatec.cositems.services.ProductService;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -20,10 +24,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("product")
 public class ProductController {
     @Autowired
     ProductRepository repository;
+
+    private final ProductService productService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -34,9 +41,8 @@ public class ProductController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
-    public ProductResponseDTO getById(@PathVariable("id") String id) {
-        ProductResponseDTO foundProduct = new ProductResponseDTO(repository.findById(id).orElse(null));
-        return foundProduct;
+    public ProductResponseDTO getById(@PathVariable("id") String id) throws EmptyExceptions {
+        return productService.findById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

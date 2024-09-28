@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import com.fundatec.cositems.enums.Size;
+import com.fundatec.cositems.enums.Categories;
 import com.fundatec.cositems.dto.ProductRequestDTO;
 
 import lombok.AllArgsConstructor;
@@ -24,8 +25,11 @@ public class ProductModel {
     @Id
     private String id;
     private String name;
+    private String anime;
+    private String nameCharacter;
     private List<String> image;
     private String description;
+    private Size size;
     private BigDecimal price;
     
     public ProductModel(ProductRequestDTO data) {

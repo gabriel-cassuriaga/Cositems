@@ -1,4 +1,4 @@
-import './Footer.css'
+import './footer.css'
 import callImg from '../../assets/images/call.png';
 import mailImg from '../../assets/images/mail.png';
 
