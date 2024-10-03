@@ -1,4 +1,4 @@
-package com.fundatec.cositems.model;
+package com.fundatec.cositems.model.subClasses;
 
 import com.fundatec.cositems.enums.Size;
 

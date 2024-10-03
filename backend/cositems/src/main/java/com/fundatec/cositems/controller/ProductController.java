@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("product")
 public class ProductController {
 
-    
     private final ProductService productService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

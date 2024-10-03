@@ -4,8 +4,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fundatec.cositems.dto.UserRequestDTO;
 import com.fundatec.cositems.dto.UserResponseDTO;
+import com.fundatec.cositems.exceptions.AlreadyExistException;
+import com.fundatec.cositems.exceptions.EmptyExceptions;
+import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.model.UserModel;
 import com.fundatec.cositems.repository.UserRepository;
+import com.fundatec.cositems.services.UserService;
+
+import jakarta.security.auth.message.AuthException;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -19,56 +26,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("user")
 public class UserController {
-    @Autowired
-    UserRepository repository;
+
+    private final UserService userService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<UserResponseDTO> getAll() {
-        List<UserResponseDTO> users = repository.findAll().stream().map(UserResponseDTO::new).toList();
-        return users;
+    public List<UserResponseDTO> getAll() throws NotFoundException {
+        return userService.findAllUsers();
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
-    public UserResponseDTO getById(@PathVariable("id") String id) {
-        UserResponseDTO foundUser = new UserResponseDTO(repository.findById(id).orElse(null));
-        return foundUser;
+    public UserResponseDTO getById(@PathVariable("id") String id) throws EmptyExceptions, NotFoundException {
+        return userService.findByUserById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    public UserResponseDTO createUser(@RequestBody UserRequestDTO data) {
-        UserModel user = new UserModel(data);
-        repository.save(user);
-
-        UserResponseDTO createdUser = new UserResponseDTO(user);
-        return createdUser;
+    public UserResponseDTO createUser(@RequestBody UserRequestDTO data) throws AlreadyExistException, EmptyExceptions {
+        return userService.createUser(data);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
-    public UserResponseDTO updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id) {
-        UserModel user = repository.findById(id).orElse(null);
-
-        user.setUsername(data.username());
-        user.setPassword(data.password());
-
-        repository.save(user);
-        UserResponseDTO upadtedUser = new UserResponseDTO(user);
-
-        return upadtedUser;
-
+    public UserResponseDTO updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id) throws NotFoundException {
+        return userService.updateUser(data, id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") String id) {
-        UserModel user = repository.findById(id).orElse(null);
-        repository.delete(user);
-
+    public void deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id) throws AuthException, NotFoundException {
+        userService.deleteUser(data, id);
     }
 }

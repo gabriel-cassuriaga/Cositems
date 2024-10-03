@@ -5,9 +5,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import com.fundatec.cositems.enums.Size;
-import com.fundatec.cositems.enums.Categories;
-import com.fundatec.cositems.dto.ProductRequestDTO;
+
+import com.fundatec.cositems.model.subClasses.SizeStorage;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
