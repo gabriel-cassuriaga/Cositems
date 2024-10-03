@@ -5,15 +5,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fundatec.cositems.dto.ProductRequestDTO;
 import com.fundatec.cositems.dto.ProductResponseDTO;
 import com.fundatec.cositems.exceptions.EmptyExceptions;
-import com.fundatec.cositems.model.ProductModel;
-import com.fundatec.cositems.repository.ProductRepository;
+import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.services.ProductService;
-
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
-
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,15 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("product")
 public class ProductController {
-    @Autowired
-    ProductRepository repository;
 
+    
     private final ProductService productService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<ProductResponseDTO> getAll() {
-        List<ProductResponseDTO> products = repository.findAll().stream().map(ProductResponseDTO::new).toList();
+        List<ProductResponseDTO> products = productService.findAll().stream().map(ProductResponseDTO::new).toList();
         return products;
     }
 
@@ -47,38 +42,39 @@ public class ProductController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO data) {
-        ProductModel product = new ProductModel(data);
-        repository.save(product);
-
-        ProductResponseDTO createdProduct = new ProductResponseDTO(product);
-        return createdProduct;
+    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO data) throws EmptyExceptions {
+        return productService.createProduct(data);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id) throws Exception {
-        ProductModel product = repository.findById(id).orElse(null);
-
-        product.setName(data.name());
-        product.setImage(data.image());
-        product.setPrice(data.price());
-        product.setDescription(data.description());
-
-        repository.save(product);
-
-        ProductResponseDTO updatedProduct = new ProductResponseDTO(product);
-
-        return updatedProduct;
-
+        return productService.updateProduct(data, id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") String id) {
-        ProductModel product = repository.findById(id).orElse(null);
-        repository.delete(product);
-
+    public void deleteProduct(@PathVariable("id") String id) throws NotFoundException {
+        productService.deleteProduct(id);
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/{name}")
+    public List<ProductResponseDTO> findByName(@PathVariable("name")String name) {
+        return productService.findByName(name);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/{size}")
+    public List<ProductResponseDTO> findBySize(@PathVariable("size") String size) throws EmptyExceptions {
+        return productService.findBySize(size);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/{price}")
+    public List<ProductResponseDTO> findByPrice(@PathVariable("price") BigDecimal price) {
+        return productService.findByPrice(price);
+    }
+    
 
 }

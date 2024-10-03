@@ -10,11 +10,13 @@ import com.fundatec.cositems.enums.Categories;
 import com.fundatec.cositems.dto.ProductRequestDTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,16 +28,9 @@ public class ProductModel {
     private String id;
     private String name;
     private String anime;
-    private String nameCharacter;
     private List<String> image;
     private String description;
-    private Size size;
+    private List<SizeStorage> storage;
     private BigDecimal price;
     
-    public ProductModel(ProductRequestDTO data) {
-        this.name = data.name();
-        this.image = data.image();
-        this.description = data.description();
-        this.price = data.price();
-    }
 }

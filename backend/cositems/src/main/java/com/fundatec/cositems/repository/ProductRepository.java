@@ -11,8 +11,7 @@ import com.fundatec.cositems.model.ProductModel;
 
 
 public interface ProductRepository extends MongoRepository<ProductModel, String>{
-    @Query("{'size' : ?0}")
-    List<ProductModel> findBySize(Size size);
+
 
     @Query("{'name' : ?0}")
     List<ProductModel> findByName(String name);
