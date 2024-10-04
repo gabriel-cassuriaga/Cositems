@@ -1,0 +1,37 @@
+/* Estilos para o container do dropdown */
+.dropdown-container {
+    margin: 20px 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilos para o rótulo */
+  .dropdown-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  /* Estilos para o select */
+  .dropdown-container select {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #555;
+    background-color: #f9f9f9;
+    transition: 0.3s;
+  }
+  
+  /* Efeito ao focar no select */
+  .dropdown-container select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Estilos para as opções */
+  .dropdown-container option {
+    padding: 10px;
+  }
+  

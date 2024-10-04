@@ -1,20 +1,19 @@
 import './Home.css'
 
-import { useState } from "react";
 import { useProductData } from "../../hooks/useProductData";
-import { Card } from "../../components/card/card";
-import { CreateModal } from "../../components/create-modal/create-modal";
+import { ImageCard } from "../../components/image-card/ImageCard";
+// import { CreateModal } from "../../components/create-modal/CreateModal";
 
 
 export function Home() {
 
     const { data } = useProductData();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
 
-    const handleOpenModal = () => {
-        setIsModalOpen(prev => !prev)
-    }
+    // const handleOpenModal = () => {
+    //     setIsModalOpen(prev => !prev)
+    // }
 
     return (
 
@@ -23,7 +22,8 @@ export function Home() {
             <div className="home-container">
                 <div className="product-card-container">
                     <div className="card-grid">
-                        {data?.map(productData => <Card
+                        {data?.map(productData => <ImageCard
+                            key={productData.id}
                             id={productData.id}
                             image={productData.image}
                             name={productData.name}
@@ -34,8 +34,8 @@ export function Home() {
             </div>
             </div>
             
-            {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
-            <button onClick={handleOpenModal}>Novo Produto</button>
+            {/* {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
+            <button onClick={handleOpenModal}>Novo Produto</button> */}
 
         </>
 
