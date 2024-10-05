@@ -1,15 +1,15 @@
-import './ProductDetails.css';
+import './styles/ProductDetails.css';
 import { useParams } from "react-router-dom";
 import { useProductDataById } from "../../hooks/useProductDataById";
 import { useState } from 'react';
 
-import { ImageSlider } from '../../components/image-slider/ImageSlider';
-import { ProductImage } from '../../components/product-image/ProductImage';
-import { Counter } from '../../components/counter/Counter';
-import { Dropdown } from '../../components/dropdown/Dropdown';
+import { ImageSlider } from './ImageSlider';
+import { ProductImage } from './ProductImage';
+import { Counter } from '../../components/Counter/Counter';
+import { Dropdown } from './Dropdown';
 
 import sizeChart from '../../assets/images/size_chart.png'
-import { useCartContext } from '../../context/CartContext';
+import { useCartContext } from '../../modules/cart/cartContext';
 
 export function ProductDetails() {
 
@@ -18,7 +18,6 @@ export function ProductDetails() {
 
     const { data, isLoading, error } = useProductDataById(id);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
     const { dispatch } = useCartContext();
 
     const addToCart = () => {
@@ -27,9 +26,6 @@ export function ProductDetails() {
 
         }
     };
-
-    if (isLoading) return <div>Atualizando...</div>;
-    if (error) return <div>Error: {error.message}</div>;
 
     const handleNextImage = () => {
         if (data?.image) {
@@ -63,6 +59,10 @@ export function ProductDetails() {
         });
     }
 
+    
+    if (isLoading) return <div>Atualizando...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+
     const currentImage = data?.image[currentImageIndex] || '';
 
     return (
@@ -84,7 +84,7 @@ export function ProductDetails() {
                 <h1 className="product-name">{data?.name}</h1>
                 <p className="product-price">R${data?.price}</p>
                 <Dropdown />
-                <Counter />
+                <Counter initialNumber={1}/>
                 <button className="add-cart-button" onClick={addToCart}>Adicionar ao Carrinho</button>
                 <button className="buy-now-button">Comprar Agora</button>
                 <p className="product-description">{data?.description}</p>

@@ -1,8 +1,8 @@
-import './ProductImage.css';
+import './styles/ProductImage.css';
 
-import arrowLeftImg from '../../assets/images/arrow_left.png';
-import arrowRigthImg from '../../assets/images/arrow_right.png';
-import openInFullImg from '../../assets/images/open_in_full.png';
+import arrowLeftImg from '../../assets/icons/products/arrow_left.png';
+import arrowRigthImg from '../../assets/icons/products/arrow_right.png';
+import openInFullImg from '../../assets/icons/products/open_in_full.png';
 
 
 import { useState } from 'react';

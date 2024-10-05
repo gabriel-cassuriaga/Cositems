@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import './LoginForm.css'
+import './styles/LoginForm.css'
 
-import eyeIconImg from '../../assets/images/visibility.png'
-//import eyeIconOffImg from '../../assets/images/visibility_off.png'
+import eyeIconImg from '../../assets/icons/login/visibility.png'
+//import eyeIconOffImg from '../../assets/icons/login/visibility_off.png'
 
-import lockIconImg from '../../assets/images/lock.png';
-import userIconImg from '../../assets/images/user.png'
+import lockIconImg from '../../assets/icons/login/lock.png';
+import userIconImg from '../../assets/icons/login/user.png'
 
 
 export function LoginForm() {

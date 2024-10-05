@@ -5,12 +5,11 @@ import './index.css'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
-import { Home } from './routes/home/Home.tsx'
-import { ErrorPage } from './routes/error-page/ErrorPage.tsx'
-import { ProductDetails } from './routes/product-details/ProductDetails.tsx'
-import { Login } from './routes/login/Login.tsx'
-import { Cart } from './routes/cart/Cart.tsx'
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
+import { Home } from './pages/Home/Home.tsx'
+import { Login } from './pages/Login/Login.tsx'
+import { ProductDetails } from './pages/ProductDetails/ProductDetails.tsx'
+import { Cart } from './pages/Cart/Cart.tsx'
 
 const router = createBrowserRouter([
   {

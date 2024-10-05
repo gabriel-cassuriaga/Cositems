@@ -1,4 +1,4 @@
-import './ImageSlider.css';
+import './styles/ImageSlider.css';
 
 interface ImageSliderProps {
     images: string[];

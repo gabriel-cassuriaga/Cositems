@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import addImg from '../../assets/images/add.png';
-import removeImg from '../../assets/images/remove.png';
+import addImg from '../../assets/icons/products/add.png';
+import removeImg from '../../assets/icons/products/remove.png';
 import './Counter.css'
 
-export function Counter() {
-    const [count, setCount] = useState(1);
+interface CounterProps {
+    initialNumber: number;
+}
+
+export function Counter({ initialNumber }: CounterProps) {
+    const [count, setCount] = useState(initialNumber);
 
     const handleAdd = () => setCount(count + 1);
     const handleRemove = () => {

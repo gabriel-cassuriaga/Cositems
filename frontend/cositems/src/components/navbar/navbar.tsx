@@ -1,8 +1,9 @@
 import './Navbar.css'
+
 import logoImg from '../../assets/images/logo.png';
-import profileImg from '../../assets/images/profile.png';
-import cartImg from '../../assets/images/cart.png';
-import searchImg from '../../assets/images/search.png';
+import profileImg from '../../assets/icons/navbar/profile.png';
+import cartImg from '../../assets/icons/navbar/cart.png';
+import searchImg from '../../assets/icons/navbar/search.png';
 import { Link } from 'react-router-dom';
 
 

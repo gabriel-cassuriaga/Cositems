@@ -1,7 +1,7 @@
-import './Home.css'
+import './styles/Home.css'
 
 import { useProductData } from "../../hooks/useProductData";
-import { ImageCard } from "../../components/image-card/ImageCard";
+import { ImageCard } from "./ImageCard";
 // import { CreateModal } from "../../components/create-modal/CreateModal";
 
 

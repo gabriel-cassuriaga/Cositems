@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { ProductData } from "../interface/ProductData";
+import { ProductData } from "../../interfaces/ProductData";
 
 export type Cart = {
     products: ProductData[];
