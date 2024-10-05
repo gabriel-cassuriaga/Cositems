@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public ProductResponseDTO getById(@PathVariable("id") String id) throws EmptyExceptions {
         return productService.findById(id);
     }
@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping("/{id}")
+    @PutMapping("/updateProduct/{id}")
     public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id) throws Exception {
         return productService.updateProduct(data, id);
     }

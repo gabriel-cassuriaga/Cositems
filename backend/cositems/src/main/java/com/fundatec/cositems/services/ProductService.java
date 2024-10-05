@@ -67,8 +67,8 @@ public class ProductService {
     }
 
     public ProductResponseDTO updateProduct(ProductRequestDTO data, String id) throws EmptyExceptions {
-        if (productRepository.findById(id).isPresent()) {
-            throw new EmptyExceptions("Id vazio");
+        if (!productRepository.findById(id).isPresent()) {
+            throw new EmptyExceptions("Produto não encontrado");
         }    
         ProductModel productToBeUpdate = productRepository.findById(id).get();
         productToBeUpdate.setImage(data.image());
@@ -77,6 +77,7 @@ public class ProductService {
         productToBeUpdate.setAnime(data.anime());
         productToBeUpdate.setDescription(data.description());
         productToBeUpdate.setStorage(data.storage());
+        productRepository.save(productToBeUpdate);
         return objectMapper.convertValue(productToBeUpdate, ProductResponseDTO.class);
 
     }

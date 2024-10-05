@@ -41,12 +41,14 @@ public class UserService {
 
     public UserResponseDTO findByUserById(String id) throws EmptyExceptions, NotFoundException {
         if (id.isBlank())throw new EmptyExceptions("id vazio");
-        if (userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
+        if (!userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
         return objectMapper.convertValue(userRepository.findById(id), UserResponseDTO.class);
     }
 
     public List<UserResponseDTO> findAllUsers() throws NotFoundException {
-        if (userRepository.findAll().isEmpty()) throw new NotFoundException("Nenhum usuário não encontrado");
+       if (userRepository.findAll() == null) {
+        throw new NotFoundException("Nenhum usuário não encontrado"); 
+       }
         List<UserResponseDTO> userToReturn = userRepository.findAll().stream()
         .map(users -> UserResponseDTO.builder()
             .id(users.getId())
@@ -57,7 +59,7 @@ public class UserService {
     }
 
     public UserResponseDTO updateUser(UserRequestDTO data, String id) throws NotFoundException {
-        if (userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
+        if (!userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
         UserModel userToUpdate = userRepository.findById(id).get();
         userToUpdate.setEmail(data.email());
         userToUpdate.setPassword(data.password());
@@ -67,9 +69,13 @@ public class UserService {
     }
 
     public void deleteUser(UserRequestDTO data, String id) throws NotFoundException, AuthException {
-        if (userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
+        if (!userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
         UserModel user = userRepository.login(id, data.email(), data.password());
         if (user == null) throw new AuthException("Não autorizado");
         userRepository.delete(user);
+    }
+
+    public List<UserModel> findAllForTest() {
+        return userRepository.findAll();
     }
 }

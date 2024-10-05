@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.fundatec.cositems.enums.Size;
-import com.fundatec.cositems.model.subClasses.SizeStorage;
+import com.fundatec.cositems.model.SizeStorage;
 
 import lombok.Builder;
 
