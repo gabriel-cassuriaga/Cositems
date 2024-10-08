@@ -11,5 +11,8 @@ public interface UserRepository extends MongoRepository<UserModel, String>{
     UserModel findByUsernameAndEmailAndPassword(String username, String email, String password);
 
     @Query("{'id' : ?0, 'email' : ?1, 'password' : ?2}")
-    UserModel login(String id, String email, String password);
+    UserModel deleteUser(String id, String email, String password);
+
+    @Query("{'email' : ?0, 'password' : ?1}")
+    UserModel login(String email, String password);
 }

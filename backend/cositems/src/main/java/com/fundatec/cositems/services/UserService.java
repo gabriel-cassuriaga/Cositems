@@ -70,12 +70,21 @@ public class UserService {
 
     public void deleteUser(UserRequestDTO data, String id) throws NotFoundException, AuthException {
         if (!userRepository.findById(id).isPresent()) throw new NotFoundException("Usuário não encontrado");
-        UserModel user = userRepository.login(id, data.email(), data.password());
+        UserModel user = userRepository.deleteUser(id, data.email(), data.password());
         if (user == null) throw new AuthException("Não autorizado");
         userRepository.delete(user);
     }
 
     public List<UserModel> findAllForTest() {
         return userRepository.findAll();
+    }
+
+    public UserResponseDTO login(UserRequestDTO data) throws AuthException, NotFoundException {
+        if (data.email().isBlank() && data.password().isBlank()) throw new AuthException("Login inválido");
+        if (data.email().isBlank()) throw new AuthException("Login inválido");
+        if (data.password().isBlank()) throw new AuthException("Login inválido");
+        UserModel user = userRepository.login(data.email(), data.password());
+        if (user == null) throw new NotFoundException("Usuario não encontrado");
+        return objectMapper.convertValue(user, UserResponseDTO.class);
     }
 }

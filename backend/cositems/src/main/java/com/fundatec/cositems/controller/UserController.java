@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping
+    @PostMapping("/createUser")
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data) throws AlreadyExistException, EmptyExceptions {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
     }
@@ -72,4 +72,11 @@ public class UserController {
     public List<UserModel> getAllUsersForTest() {
         return userService.findAllForTest();
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/login")
+    public UserResponseDTO login(@RequestBody UserRequestDTO data) throws AuthException, NotFoundException {
+        return userService.login(data);
+    }
+
 }
