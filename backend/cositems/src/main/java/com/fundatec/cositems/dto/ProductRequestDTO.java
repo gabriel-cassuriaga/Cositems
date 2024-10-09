@@ -8,8 +8,8 @@ import com.fundatec.cositems.model.SizeStorage;
 
 import lombok.Builder;
 
-
 @Builder
-public record ProductRequestDTO(String name, List<String> image, String description, BigDecimal price, Size size, String anime, List<SizeStorage> storage) {
-    
+public record ProductRequestDTO(String name, List<String> image, String description, BigDecimal price, Size size,
+        String anime, List<SizeStorage> storage) {
+
 }

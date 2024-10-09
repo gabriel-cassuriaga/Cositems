@@ -21,10 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("product")
+@RequestMapping("products")
 public class ProductController {
 
     private final ProductService productService;
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping
+    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO data) throws EmptyExceptions {
+        return productService.createProduct(data);
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -34,20 +40,33 @@ public class ProductController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/findById/{id}")
+    @GetMapping("/{id}")
     public ProductResponseDTO getById(@PathVariable("id") String id) throws EmptyExceptions {
         return productService.findById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping
-    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO data) throws EmptyExceptions {
-        return productService.createProduct(data);
+    @GetMapping("/name/{name}")
+    public List<ProductResponseDTO> findByName(@PathVariable("name") String name) {
+        return productService.findByName(name);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping("/updateProduct/{id}")
-    public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id) throws Exception {
+    @GetMapping("/size/{size}")
+    public List<ProductResponseDTO> findBySize(@PathVariable("size") String size) throws EmptyExceptions {
+        return productService.findBySize(size);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/price/{price}")
+    public List<ProductResponseDTO> findByPrice(@PathVariable("price") BigDecimal price) {
+        return productService.findByPrice(price);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public ProductResponseDTO updateProduct(@RequestBody ProductRequestDTO data, @PathVariable("id") String id)
+            throws Exception {
         return productService.updateProduct(data, id);
     }
 
@@ -56,24 +75,5 @@ public class ProductController {
     public void deleteProduct(@PathVariable("id") String id) throws NotFoundException {
         productService.deleteProduct(id);
     }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/{name}")
-    public List<ProductResponseDTO> findByName(@PathVariable("name")String name) {
-        return productService.findByName(name);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/{size}")
-    public List<ProductResponseDTO> findBySize(@PathVariable("size") String size) throws EmptyExceptions {
-        return productService.findBySize(size);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/{price}")
-    public List<ProductResponseDTO> findByPrice(@PathVariable("price") BigDecimal price) {
-        return productService.findByPrice(price);
-    }
-    
 
 }

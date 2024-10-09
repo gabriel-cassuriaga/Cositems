@@ -1,9 +1,6 @@
-import './footer.css'
-import callImg from '../../assets/images/call.png';
-import mailImg from '../../assets/images/mail.png';
-
-
-
+import './Footer.css'
+import callImg from '../../assets/icons/footer/call.png';
+import mailImg from '../../assets/icons/footer/mail.png';
 
 export function Footer() {
 
@@ -46,11 +43,9 @@ export function Footer() {
                         <p>
                             <img src={mailImg} alt='imagem de uma carta de email' /> cositemsfakemail@gmail.com
                         </p>
-
                     </div>
                 </div>
             </div>
-
 
             <div className="footer-bottom">
                 <p>© 2024 All Rights Reserved. By CosItems</p>

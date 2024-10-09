@@ -28,5 +28,5 @@ public class ProductModel {
     private String description;
     private List<SizeStorage> storage;
     private BigDecimal price;
-    
+
 }

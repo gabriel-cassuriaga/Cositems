@@ -1,0 +1,113 @@
+{
+  "App.css": "file",
+  "App.tsx": "file",
+  "assets": {
+    "icons": {
+      "footer": {
+        "call.png": "file",
+        "mail.png": "file"
+      },
+      "login": {
+        "lock.png": "file",
+        "user.png": "file",
+        "visibility.png": "file",
+        "visibility_off.png": "file"
+      },
+      "navbar": {
+        "cart.png": "file",
+        "profile.png": "file",
+        "search.png": "file"
+      },
+      "products": {
+        "add.png": "file",
+        "arrow_left.png": "file",
+        "arrow_right.png": "file",
+        "close.png": "file",
+        "open_in_full.png": "file",
+        "remove.png": "file"
+      }
+    },
+    "images": {
+      "logo.png": "file",
+      "size_chart.png": "file"
+    },
+    "react.svg": "file"
+  },
+  "components": {
+    "CreateModal": {
+      "CreateModal.css": "file",
+      "CreateModal.tsx": "file"
+    },
+    "Footer": {
+      "Footer.css": "file",
+      "Footer.tsx": "file"
+    },
+    "Navbar": {
+      "Navbar.css": "file",
+      "Navbar.tsx": "file"
+    }
+  },
+  "context": {
+    "cartContext.tsx": "file"
+  },
+  "hooks": {
+    "useProductData.ts": "file",
+    "useProductDataById.ts": "file",
+    "useProductDataMutate.ts": "file"
+  },
+  "index.css": "file",
+  "interface": {
+    "ProductData.ts": "file"
+  },
+  "main.tsx": "file",
+  "pages": {
+    "Cart": {
+      "Cart.css": "file",
+      "Cart.tsx": "file"
+    },
+    "ErrorPage": {
+      "ErrorPage.css": "file",
+      "ErrorPage.tsx": "file"
+    },
+    "Home": {
+      "Home.css": "file",
+      "Home.tsx": "file",
+      "ImageCard": {
+        "ImageCard.css": "file",
+        "ImageCard.tsx": "file"
+      }
+    },
+    "Login": {
+      "Login.css": "file",
+      "Login.tsx": "file",
+      "LoginForm": {
+        "LoginForm.css": "file",
+        "LoginForm.tsx": "file"
+      }
+    },
+    "ProductDetails": {
+      "Counter": {
+        "Counter.css": "file",
+        "Counter.tsx": "file"
+      },
+      "Dropdown": {
+        "Dropdown.css": "file",
+        "Dropdown.tsx": "file"
+      },
+      "ImageSlider": {
+        "ImageSlider.css": "file",
+        "ImageSlider.tsx": "file"
+      },
+      "ProductDetails.css": "file",
+      "ProductDetails.tsx": "file",
+      "ProductImage": {
+        "ProductImage.css": "file",
+        "ProductImage.tsx": "file"
+      }
+    }
+  },
+  "reducers": {
+    "useCart.tsx": "file"
+  },
+  "vite-env.d.ts": "file"
+}

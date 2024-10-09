@@ -26,49 +26,35 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("user")
+@RequestMapping("users")
 public class UserController {
 
     private final UserService userService;
 
-
-
+    
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<UserResponseDTO>> getAll() throws NotFoundException {
-        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK); 
+    @PostMapping
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data)
+            throws AlreadyExistException, EmptyExceptions {
+        return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/getUsuarioById/{id}")
+    @GetMapping
+    public ResponseEntity<List<UserResponseDTO>> getAll() throws NotFoundException {
+        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/{id}")
     public UserResponseDTO getById(@PathVariable("id") String ident) throws EmptyExceptions, NotFoundException {
         return userService.findByUserById(ident);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/createUser")
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data) throws AlreadyExistException, EmptyExceptions {
-        return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping("/updateUser/{id}")
-    public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id) throws NotFoundException {
-        return new ResponseEntity(userService.updateUser(data, id), HttpStatus.ACCEPTED);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @DeleteMapping("/deleteUserById/{id}")
-    public ResponseEntity deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id) throws AuthException, NotFoundException {
-        userService.deleteUser(data, id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/getUsersForTesting")
+    @GetMapping("/testing-all")
     public List<UserModel> getAllUsersForTest() {
         return userService.findAllForTest();
     }
@@ -78,5 +64,22 @@ public class UserController {
     public UserResponseDTO login(@RequestBody UserRequestDTO data) throws AuthException, NotFoundException {
         return userService.login(data);
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
+            throws NotFoundException {
+        return new ResponseEntity(userService.updateUser(data, id), HttpStatus.ACCEPTED);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
+            throws AuthException, NotFoundException {
+        userService.deleteUser(data, id);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
+    
 
 }

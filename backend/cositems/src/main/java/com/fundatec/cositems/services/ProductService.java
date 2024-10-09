@@ -36,6 +36,7 @@ public class ProductService {
         if (size.isEmpty()) {
             throw new EmptyExceptions("Tamanho inexistente");
         }
+
         List<ProductModel> products = productRepository.findAll();
         List<ProductResponseDTO> productsToReturn = products.stream()
         .filter(retorno -> retorno.getStorage().stream().anyMatch(s -> s.getSize().equals(size)))

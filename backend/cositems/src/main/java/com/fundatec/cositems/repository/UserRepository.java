@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.fundatec.cositems.model.UserModel;
 
-public interface UserRepository extends MongoRepository<UserModel, String>{
-    
+public interface UserRepository extends MongoRepository<UserModel, String> {
+
     @Query("{'username' : ?0, 'email' : ?1, 'password' : ?2}")
     UserModel findByUsernameAndEmailAndPassword(String username, String email, String password);
 
@@ -15,4 +15,5 @@ public interface UserRepository extends MongoRepository<UserModel, String>{
 
     @Query("{'email' : ?0, 'password' : ?1}")
     UserModel login(String email, String password);
+    
 }
