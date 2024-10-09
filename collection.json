@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "639ba562-c20c-4c20-b381-e3544ef277e6",
 		"name": "CosItems",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "33567266"
 	},
 	"item": [
@@ -16,28 +16,19 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Produto Maravilhoso\",\r\n  \"value\": 99.99,\r\n  \"description\": \"Um produto excelente\",\r\n  \"quantity\": 1\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Produto Incrível\",\r\n    \"image\":[\"https://i.pinimg.com/736x/4d/e6/6a/4de66ad5724a86d70062648e3fb29794.jpg\",\r\n    \"https://m.media-amazon.com/images/I/71T8NUbq-GS.jpg\",\r\n    \"https://qph.cf2.quoracdn.net/main-qimg-9e962e05fc68749806d1979b728d3ffa-lq\",\r\n    \"https://cdn.selectgame.net/wp-content/uploads/2023/08/Belo-cosplay-da-Makima-de-Chainsaw-Man-da-Let-capa.webp\",\r\n    \"https://japaneseonimasks.com/cdn/shop/products/product-image-1891299692_3112a3cc-5249-4e08-b896-f94ca5ad7ccb.jpg?v=1637055068\",\r\n    \"https://rogersenpai.com/wp-content/uploads/2021/03/Roy-Mustang-2-683x1024.jpg\",\r\n    \"https://www.gcosplay.com/cdn/shop/products/9_42c07ffe-3ac7-4d7e-aa99-f4f24ef3a54e.jpg?v=1681885471&width=1445\"],\r\n    \"description\": \"Sushi cowboy bebop erogi chibi mothra otaku moe ova chibi senpai. Desu chibi manga yuri panties matcha doujinshi anime matcha ramen megane manga. Sushi seinan doujinshi ova makoto shinkai sakura dub weeaboo mangaka ramen chibi josei hikikomori ova. Takoyaki japan megane sushi godzilla grave of the fireflies ghost in the shell oniisan dango dandere ultra man. Hentai ramen moe fanservice moe green tea your name green tea yuki senpai cowboy bebop honorifics green tea japan.\",\r\n    \"price\": 45.10\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/product",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"product"
-							]
-						}
+						"url": "localhost:8080/products"
 					},
 					"response": []
 				},
 				{
-					"name": "GET ALL",
+					"name": "SEARCH",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -54,15 +45,51 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/product",
+							"raw": "localhost:8080/products/search?name=Produto Incrível&price=43.10&size=P",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"product"
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Produto Incrível"
+								},
+								{
+									"key": "price",
+									"value": "43.10"
+								},
+								{
+									"key": "size",
+									"value": "P"
+								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"price\": 45.10\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/products"
 					},
 					"response": []
 				},
@@ -83,17 +110,25 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/product/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"product",
-								"{id}"
-							]
-						}
+						"url": "localhost:8080/products/66eb7862894e4748636cfdd8"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"AAAA\",\r\n    \"image\": [\"https://i.pinimg.com/736x/4d/e6/6a/4de66ad5724a86d70062648e3fb29794.jpg\", \"https://i.pinimg.com/736x/4d/e6/6a/4de66ad5724a86d70062648e3fb29794.jpg\"],\r\n    \"description\": \"teste do raul\",\r\n    \"price\": 43.10\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/products/66eb7862894e4748636cfdd8"
 					},
 					"response": []
 				},
@@ -111,45 +146,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/product/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"product",
-								"{id}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE BY ID",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Produto Maravilhoso\",\r\n  \"value\": 99.99,\r\n  \"description\": \"Um produto excelente\",\r\n  \"quantity\": 1\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/product/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"product",
-								"{id}"
-							]
-						}
+						"url": "localhost:8080/products/66eb7862894e4748636cfdd8"
 					},
 					"response": []
 				}
@@ -165,23 +162,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"hashed_password_here\"\r\n}\r\n\r\n",
+							"raw": "{\r\n    \"username\": \"João Bobão\",\r\n    \"email\": \"user@example.com\",\r\n    \"password\": \"hashed_password_here\"\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/user",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user"
-							]
-						}
+						"url": "localhost:8080/users"
 					},
 					"response": []
 				},
@@ -202,16 +190,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/user",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user"
-							]
-						}
+						"url": "localhost:8080/users"
 					},
 					"response": []
 				},
@@ -232,17 +211,25 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/user/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user",
-								"{id}"
-							]
-						}
+						"url": "localhost:8080/users/662360359d6f4868af8e6dff"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"raul\",\r\n    \"email\": \"user@example.com\",\r\n    \"password\": \"hashed_password_here\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/users/662360359d6f4868af8e6dff"
 					},
 					"response": []
 				},
@@ -260,45 +247,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:8080/user/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user",
-								"{id}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE BY ID",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"hashed_password_here\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/user/{id}",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user",
-								"{id}"
-							]
-						}
+						"url": "localhost:8080/users/662360359d6f4868af8e6dff"
 					},
 					"response": []
 				}

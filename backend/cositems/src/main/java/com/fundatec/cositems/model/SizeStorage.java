@@ -11,5 +11,5 @@ public class SizeStorage {
 
     private Integer amount;
     private Size size;
-    
+
 }

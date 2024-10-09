@@ -1,4 +1,4 @@
-import './styles/Home.css'
+import './Home.css'
 
 import { useProductData } from "../../hooks/useProductData";
 import { ImageCard } from "./ImageCard";

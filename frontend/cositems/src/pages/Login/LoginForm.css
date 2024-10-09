@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
+
+
 .form-card {
     width: 90%;
     max-width: 400px;
@@ -7,13 +10,13 @@
     padding: 20px;
 }
 
-.formRegister {
+.form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.title-register {
+.title-login {
     text-align: center;
     margin: 0;
     color: #505050;
@@ -52,8 +55,8 @@
 }
 
 
-.btn-register {
-    background-color: #1c1d1c;
+.btn-login {
+    background-color: #04a454;
     color: #ffffff;
     border: none;
     padding: 0.8em 1em;
@@ -65,9 +68,9 @@
     margin-top: 8px;
 }
 
-
-.login-link {
-    color: #1a1a1a;
+.forgot-password-link,
+.register-link {
+    color: #04a454;
     text-decoration: none;
     font-size: 1.1em;
     transition: color 0.3s;
@@ -76,10 +79,11 @@
 }
 
 .btn-login:hover {
-    background-color: #000000;
+    background-color: #038c3e;
 }
 
-
-.login-link:hover {
-    color: #000000;
+.forgot-password-link:hover,
+.register-link:hover {
+    color: #038c3e;
 }
+

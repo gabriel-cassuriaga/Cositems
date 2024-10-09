@@ -1,15 +1,16 @@
-import './styles/ProductDetails.css';
+import './ProductDetails.css';
 import { useParams } from "react-router-dom";
 import { useProductDataById } from "../../hooks/useProductDataById";
 import { useState } from 'react';
 
 import { ImageSlider } from './ImageSlider';
 import { ProductImage } from './ProductImage';
-import { Counter } from '../../components/Counter/Counter';
 import { Dropdown } from './Dropdown';
 
 import sizeChart from '../../assets/images/size_chart.png'
 import { useCartContext } from '../../modules/cart/cartContext';
+import { Counter } from '../../components/Counter/Counter';
+
 
 export function ProductDetails() {
 
@@ -18,11 +19,21 @@ export function ProductDetails() {
 
     const { data, isLoading, error } = useProductDataById(id);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [counterValue, setCounterValue] = useState(1);
     const { dispatch } = useCartContext();
 
     const addToCart = () => {
-        if (data) {
-            dispatch({ type: 'ADD_PRODUCT', value: data });
+        if (data?.id) {
+
+            const product = {
+                id: data.id,
+                name: data.name,
+                image: data.image[0],
+                price: data.price,
+                quantity: counterValue // ou qualquer quantidade que você queira adicionar
+            };
+
+            dispatch({ type: 'ADD_PRODUCT', value: product});
 
         }
     };
@@ -84,7 +95,7 @@ export function ProductDetails() {
                 <h1 className="product-name">{data?.name}</h1>
                 <p className="product-price">R${data?.price}</p>
                 <Dropdown />
-                <Counter initialNumber={1}/>
+                <Counter initialNumber={counterValue} onChange={setCounterValue}/>
                 <button className="add-cart-button" onClick={addToCart}>Adicionar ao Carrinho</button>
                 <button className="buy-now-button">Comprar Agora</button>
                 <p className="product-description">{data?.description}</p>

@@ -10,8 +10,6 @@ import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.model.UserModel;
 import com.fundatec.cositems.services.UserService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
 
@@ -35,64 +33,55 @@ public class UserController {
 
     private final UserService userService;
 
-    @Operation(summary = "Cria um novo Usuário")
-    @ApiResponse(responseCode = "200", description = "Usuário criado com sucesso, retorna um Dto do usuário criado")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data)
             throws AlreadyExistException, EmptyExceptions {
-        return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.createUser(data), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Busca todos os Usuários")
-    @ApiResponse(responseCode = "200", description = "Retorna todos os usuários")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAll() throws NotFoundException {
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Busca um Usuário pelo uuid do documento")
-    @ApiResponse(responseCode = "200", description = "Retorna o usuário referente ao id")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
-    public UserResponseDTO getById(@PathVariable("id") String ident) throws EmptyExceptions, NotFoundException {
-        return userService.findByUserById(ident);
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable("id") String id)
+            throws EmptyExceptions, NotFoundException {
+        UserResponseDTO user = userService.findByUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
     }
 
-//    @Operation(summary = "Busca todos os usuários para teste")
-//    @ApiResponse(responseCode = "201", description = "Retorna todos os usuários sem passar por tratamento dto")
-//    @CrossOrigin(origins = "*", allowedHeaders = "*")
-//    @GetMapping("/testing-all")
-//    public List<UserModel> getAllUsersForTest() {
-//        return userService.findAllForTest();
-//    }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/testing-all")
+    public List<UserModel> getAllUsersForTest() {
+        return userService.findAllForTest();
+    }
 
-    @Operation(summary = "Faz o login da aplicação")
-    @ApiResponse(description = "retorna o Usuário sem a senha com o id")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/login")
-    public UserResponseDTO login(@RequestBody UserRequestDTO data) throws AuthException, NotFoundException {
-        return userService.login(data);
+    public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO data)
+            throws AuthException, NotFoundException {
+        UserResponseDTO user = userService.login(data);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @Operation(summary = "Edita o usuário")
-    @ApiResponse(responseCode = "202", description = "Retorna o usuário já editado")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
             throws NotFoundException {
-        return new ResponseEntity(userService.updateUser(data, id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(userService.updateUser(data, id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Deleta o usuário")
-    @ApiResponse(responseCode = "202", description = "Deleta o usuário baseado no id comparando com email e senha para confirmação")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
+    public ResponseEntity<Void> deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
             throws AuthException, NotFoundException {
         userService.deleteUser(data, id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

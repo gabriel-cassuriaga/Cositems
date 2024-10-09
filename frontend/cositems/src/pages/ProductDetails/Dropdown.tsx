@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/Dropdown.css'
+import './Dropdown.css'
 
 export function Dropdown() {
     const [tamanho, setTamanho] = useState('');
