@@ -39,7 +39,7 @@ public class ProductService {
 
         List<ProductModel> products = productRepository.findAll();
         List<ProductResponseDTO> productsToReturn = products.stream()
-        .filter(retorno -> retorno.getStorage().stream().anyMatch(s -> s.getSize().equals(size)))
+        .filter(retorno -> retorno.getStorage() != null && retorno.getStorage().stream().anyMatch(s -> s.getSize().equals(size)))
         .map(newProducts -> ProductResponseDTO.builder()
         .id(newProducts.getId())
         .name(newProducts.getName())
