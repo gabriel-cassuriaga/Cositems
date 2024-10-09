@@ -10,6 +10,8 @@ import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.model.UserModel;
 import com.fundatec.cositems.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +35,8 @@ public class UserController {
 
     private final UserService userService;
 
+    @Operation(summary = "Cria um novo Usuário")
+    @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso, retorna um Dto do usuário criado")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data)
@@ -40,12 +44,16 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(data), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Busca todos os usuários")
+    @ApiResponse(responseCode = "200", description = "Retorna todos os usuários")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAll() throws NotFoundException {
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 
+    @Operation(summary = "Busca um usuários por id")
+    @ApiResponse(responseCode = "200", description = "Retorna um Dto de Usuario buscado pelo id")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getById(@PathVariable("id") String id)
@@ -54,13 +62,15 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/testing-all")
-    public List<UserModel> getAllUsersForTest() {
-        return userService.findAllForTest();
-    }
-
+//    @Operation(summary = "Busca todos os usuários para teste")
+//    @ApiResponse(responseCode = "302", description = "Retorna todos os usuarios para teste")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    @GetMapping("/testing-all")
+//    public List<UserModel> getAllUsersForTest() {
+//        return userService.findAllForTest();
+//    }
+    @Operation(summary = "Efetua o login da aplicação")
+    @ApiResponse(responseCode = "200", description = "Efetua o login e retora um Dto de usuário")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/login")
     public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO data)
@@ -69,6 +79,8 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @Operation(summary = "Edita e atualiza o usuário")
+    @ApiResponse(responseCode = "200", description = "Retorna um Dto do usuário atualizado")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
@@ -76,6 +88,8 @@ public class UserController {
         return new ResponseEntity<>(userService.updateUser(data, id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Deleum um usuário baseado no id com confirmação de email e senha.")
+    @ApiResponse(responseCode = "204", description = "Retorna um status sinalizando sucesso")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)

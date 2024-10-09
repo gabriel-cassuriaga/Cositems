@@ -8,6 +8,10 @@ import com.fundatec.cositems.enums.Size;
 import com.fundatec.cositems.exceptions.EmptyExceptions;
 import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.services.ProductService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
@@ -32,30 +36,39 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @Operation(summary = "Cria um produto")
+    @ApiResponse(responseCode = "201", description = "Retorna um Dto do produto criado")
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO data)
             throws EmptyExceptions {
         return new ResponseEntity<>(productService.createProduct(data), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Busca por todos os produtos")
+    @ApiResponse(responseCode = "", description = "Retorna um dto para cada produto")
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> getAll() {
         List<ProductResponseDTO> products = productService.findAll().stream().map(ProductResponseDTO::new).toList();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @Operation(summary = "Busca um produto por id")
+    @ApiResponse(responseCode = "200", description = "Retorna o Dto de um produto")
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> getById(@PathVariable("id") String id) throws EmptyExceptions {
         ProductResponseDTO product = productService.findById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
+    @Operation(summary = "")
+    @ApiResponse(responseCode = "", description = "")
     @GetMapping("/search")
     public ResponseEntity<List<ProductResponseDTO>> findByCriteria(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Size size,
-            @RequestParam(required = false) BigDecimal price) {
-        List<ProductResponseDTO> products = productService.findByCriteria(name, size, price);
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) BigDecimal minPrice) {
+        List<ProductResponseDTO> products = productService.findByCriteria(name, size, minPrice, maxPrice);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 

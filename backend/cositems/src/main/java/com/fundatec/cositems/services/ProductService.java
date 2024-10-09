@@ -51,7 +51,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<ProductResponseDTO> findByCriteria(String name, Size size, BigDecimal price) {
+    public List<ProductResponseDTO> findByCriteria(String name, Size size, BigDecimal minPrice, BigDecimal maxPrice) {
         List<ProductModel> products = productRepository.findAll();
 
         if (name != null && !name.isEmpty()) {
@@ -67,10 +67,17 @@ public class ProductService {
                         .collect(Collectors.toList());
         }
 
-        if (price != null) {
+        if (minPrice != null) {
             products = products.stream()
-                    .filter(product -> product.getPrice() != null && product.getPrice().compareTo(price) == 0)
+                    .filter(product -> product.getPrice() != null && product.getPrice().compareTo(minPrice) >= 0)
                     .collect(Collectors.toList());
+            
+        }
+        if (maxPrice != null) {
+            products = products.stream()
+            .filter(product -> product.getPrice() != null && product.getPrice().compareTo(maxPrice) <= 0)
+            .collect(Collectors.toList());
+
         }
 
         return products.stream()
