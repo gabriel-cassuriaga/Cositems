@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './styles/ImageCard.css'
+import './ImageCard.css'
 
 interface CardProps {
     id: string | undefined,

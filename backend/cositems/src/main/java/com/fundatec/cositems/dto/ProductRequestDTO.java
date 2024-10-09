@@ -10,6 +10,6 @@ import lombok.Builder;
 
 @Builder
 public record ProductRequestDTO(String name, List<String> image, String description, BigDecimal price, Size size,
-        String anime, List<SizeStorage> storage) {
+                String anime, List<SizeStorage> storage) {
 
 }

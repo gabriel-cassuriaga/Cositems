@@ -15,5 +15,5 @@ public interface UserRepository extends MongoRepository<UserModel, String> {
 
     @Query("{'email' : ?0, 'password' : ?1}")
     UserModel login(String email, String password);
-    
+
 }

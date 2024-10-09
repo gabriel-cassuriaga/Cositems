@@ -37,7 +37,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data)
             throws AlreadyExistException, EmptyExceptions {
-        return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.createUser(data), HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -48,8 +48,11 @@ public class UserController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
-    public UserResponseDTO getById(@PathVariable("id") String ident) throws EmptyExceptions, NotFoundException {
-        return userService.findByUserById(ident);
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable("id") String id)
+            throws EmptyExceptions, NotFoundException {
+        UserResponseDTO user = userService.findByUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -60,23 +63,25 @@ public class UserController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/login")
-    public UserResponseDTO login(@RequestBody UserRequestDTO data) throws AuthException, NotFoundException {
-        return userService.login(data);
+    public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO data)
+            throws AuthException, NotFoundException {
+        UserResponseDTO user = userService.login(data);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
             throws NotFoundException {
-        return new ResponseEntity(userService.updateUser(data, id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(userService.updateUser(data, id), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
+    public ResponseEntity<Void> deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
             throws AuthException, NotFoundException {
         userService.deleteUser(data, id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

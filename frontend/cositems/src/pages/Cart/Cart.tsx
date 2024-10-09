@@ -13,6 +13,9 @@ export function Cart() {
     }
   };
 
+  const updateQuantity = (productId: string, quantity: number) => {
+    dispatch({ type: 'UPDATE_QUANTITY', value: { productId, quantity } });
+  };
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
@@ -35,14 +38,17 @@ export function Cart() {
             {cart.products.map(product => (
               <div className="product" key={product.id}>
                 <div className="product-container-cart">
-                  <img className="product-image" src={product.image[0]} alt={product.name} />
+                  <img className="product-image" src={product.image} alt={product.name} />
                 </div>
                 <div className="product-details">
                   <p className="product-name">{product.name}</p>
                   <p className="product-price">R${product.price}</p>
                 </div>
                 <div className="product-counter">
-                  <Counter initialNumber={1}/>
+                  <Counter 
+                    initialNumber={product.quantity} 
+                    onChange={(newQuantity) => updateQuantity(product.id, newQuantity)} 
+                  />
                 </div>
                 <button className="remove-btn" onClick={() => removeFromCart(product.id)}>
                   <img src={deleteImg} alt="Remover produto" />

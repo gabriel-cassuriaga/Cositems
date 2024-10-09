@@ -1,4 +1,4 @@
-import './styles/ProductImage.css';
+import './ProductImage.css';
 
 import arrowLeftImg from '../../assets/icons/products/arrow_left.png';
 import arrowRigthImg from '../../assets/icons/products/arrow_right.png';

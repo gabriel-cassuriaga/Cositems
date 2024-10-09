@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './styles/LoginForm.css'
+import './LoginForm.css'
 
 import eyeIconImg from '../../assets/icons/login/visibility.png'
 //import eyeIconOffImg from '../../assets/icons/login/visibility_off.png'
