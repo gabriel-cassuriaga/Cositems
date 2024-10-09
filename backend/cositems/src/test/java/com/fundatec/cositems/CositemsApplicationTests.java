@@ -8,6 +8,7 @@ class CositemsApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
