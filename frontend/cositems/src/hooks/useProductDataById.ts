@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 const API_URL = 'http://localhost:8080';
 
 const fetchData = async (id: string): AxiosPromise<ProductData> => {
-    const response = axios.get(API_URL + '/product/' + id);
+    const response = axios.get(API_URL + '/products/' + id);
     return response;
 }
 

@@ -33,7 +33,6 @@ public class UserController {
 
     private final UserService userService;
 
-    
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO data)
@@ -79,7 +78,5 @@ public class UserController {
         userService.deleteUser(data, id);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
-
-    
 
 }
