@@ -47,7 +47,7 @@ public class ProductController {
     @Operation(summary = "Busca por todos os produtos")
     @ApiResponse(responseCode = "", description = "Retorna um dto para cada produto")
     @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAll() {
+    public ResponseEntity<List<ProductResponseDTO>> getAll() throws NotFoundException {
         List<ProductResponseDTO> products = productService.findAll().stream().map(ProductResponseDTO::new).toList();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
@@ -55,13 +55,13 @@ public class ProductController {
     @Operation(summary = "Busca um produto por id")
     @ApiResponse(responseCode = "200", description = "Retorna o Dto de um produto")
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponseDTO> getById(@PathVariable("id") String id) throws EmptyExceptions {
+    public ResponseEntity<ProductResponseDTO> getById(@PathVariable("id") String id) throws EmptyExceptions, NotFoundException {
         ProductResponseDTO product = productService.findById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    @Operation(summary = "")
-    @ApiResponse(responseCode = "", description = "")
+    @Operation(summary = "Filtra buscas para busca composta ou simples")
+    @ApiResponse(responseCode = "200", description = "Retorna o Dto dos produtos filtrados")
     @GetMapping("/search")
     public ResponseEntity<List<ProductResponseDTO>> findByCriteria(
             @RequestParam(required = false) String name,
@@ -71,7 +71,8 @@ public class ProductController {
         List<ProductResponseDTO> products = productService.findByCriteria(name, size, minPrice, maxPrice);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
-
+    @Operation(summary = "Edita ou atualiza o produto por id")
+    @ApiResponse(responseCode = "200", description = "Retorna o Dto do produto atualizado")
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@RequestBody ProductRequestDTO data,
             @PathVariable("id") String id)
@@ -79,8 +80,10 @@ public class ProductController {
         return new ResponseEntity<>(productService.updateProduct(data, id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Deleta o produto por id")
+    @ApiResponse(responseCode = "204", description = "Deleta o produto pelo id, Retorna o codigo sinalizando que foi deletado com sucesso")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("id") String id) throws NotFoundException {
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") String id) throws NotFoundException, EmptyExceptions {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

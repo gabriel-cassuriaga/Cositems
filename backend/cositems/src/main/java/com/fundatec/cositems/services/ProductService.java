@@ -35,19 +35,19 @@ public class ProductService {
         return objectMapper.convertValue(products, ProductResponseDTO.class);
     }
 
-    public ProductResponseDTO findById(String id) throws EmptyExceptions {
-
+    public ProductResponseDTO findById(String id) throws EmptyExceptions, NotFoundException {
         if (id.isEmpty()) {
             throw new EmptyExceptions("Id vazio");
         }
-
+        if (!productRepository.findById(id).isPresent()) throw new NotFoundException("Produto não encontrado");
         ProductResponseDTO productReturn = objectMapper.convertValue(productRepository.findById(id),
                 ProductResponseDTO.class);
         return productReturn;
 
     }
 
-    public List<ProductModel> findAll() {
+    public List<ProductModel> findAll() throws NotFoundException {
+        if (productRepository.findAll().isEmpty()) throw new NotFoundException("Não há produtos cadastrados");
         return productRepository.findAll();
     }
 
@@ -96,7 +96,6 @@ public class ProductService {
         productToBeUpdate.setImage(data.image());
         productToBeUpdate.setName(data.name());
         productToBeUpdate.setPrice(data.price());
-        productToBeUpdate.setAnime(data.anime());
         productToBeUpdate.setDescription(data.description());
         productToBeUpdate.setStorage(data.storage());
         productRepository.save(productToBeUpdate);
@@ -105,9 +104,9 @@ public class ProductService {
 
     }
 
-    public void deleteProduct(String id) throws NotFoundException {
-
-        if (productRepository.findById(id).isPresent()) {
+    public void deleteProduct(String id) throws NotFoundException, EmptyExceptions {
+        if (id.isBlank()) throw new EmptyExceptions("id vazio");
+        if (!productRepository.findById(id).isPresent()) {
             throw new NotFoundException("Produto não encontrado");
         }
 

@@ -23,7 +23,6 @@ public class ProductModel {
     @Id
     private String id;
     private String name;
-    private String anime;
     private List<String> image;
     private String description;
     private List<SizeStorage> storage;
