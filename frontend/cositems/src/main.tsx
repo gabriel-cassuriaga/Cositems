@@ -11,6 +11,7 @@ import { Login } from './pages/Login/Login.tsx'
 import { ProductDetails } from './pages/ProductDetails/ProductDetails.tsx'
 import { Cart } from './pages/Cart/Cart.tsx'
 import { FilteredProducts } from './pages/FilteredProducts/FilteredProducts.tsx'
+import { Register } from './pages/Register/Register.tsx'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       element: <Login />
     },
     {
+      path: "/register",
+      element: < Register/>
+    },
+    {
       path: "/produto/:id",
       element: <ProductDetails />
     },
@@ -37,7 +42,7 @@ const router = createBrowserRouter([
       path: "/search",
       element: <FilteredProducts />
     }
-  ]
+    ]
 
   }
 ])

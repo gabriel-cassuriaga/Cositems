@@ -1,11 +1,12 @@
 import './Home.css'
 
 import { useProductData } from "../../hooks/useProductData";
-import { ImageCard } from "../../components/ImageCard/ImageCard";
+import { ImageCard } from "../ImageCard/ImageCard";
 // import { CreateModal } from "../../components/create-modal/CreateModal";
 
 
-export function Home() {
+
+export function ProductsList() {
 
     const { data } = useProductData();
     // const [isModalOpen, setIsModalOpen] = useState(false);
