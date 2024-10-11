@@ -39,8 +39,9 @@ export function Navbar() {
                         <img src={searchImg} alt="Icone de pesquisa" />
                     </button>
                 </form>
-
+                <Link to={"/usuarios"}>
                 <img className="user-profile" src={profileImg} alt="icone de usuario" />
+                </Link>
                 
                 <Link to={"/cart"}>
                     <img className="shopping-cart" src={cartImg} alt="icone de carrinho de supermercado" />

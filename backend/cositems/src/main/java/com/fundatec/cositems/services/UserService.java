@@ -92,18 +92,18 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public UserResponseDTO login(UserRequestDTO data) throws AuthException, NotFoundException {
+    public UserResponseDTO login(String email, String password) throws AuthException, NotFoundException {
 
-        if (data.email().isBlank() && data.password().isBlank())
+        if (email.isBlank() && password.isBlank())
             throw new AuthException("Login inválido");
 
-        if (data.email().isBlank())
+        if (email.isBlank())
             throw new AuthException("Login inválido");
 
-        if (data.password().isBlank())
+        if (password.isBlank())
             throw new AuthException("Login inválido");
 
-        UserModel user = userRepository.login(data.email(), data.password());
+        UserModel user = userRepository.login(email, password);
 
         if (user == null)
             throw new NotFoundException("Usuario não encontrado");

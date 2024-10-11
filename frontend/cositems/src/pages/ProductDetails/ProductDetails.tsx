@@ -9,7 +9,7 @@ import { Dropdown } from './Dropdown';
 
 import sizeChart from '../../assets/images/size_chart.png'
 import { useCartContext } from '../../modules/cart/cartContext';
-import { Counter } from '../../components/Counter/Counter';
+import { Counter } from '../../components/counter/Counter';
 
 
 export function ProductDetails() {
@@ -21,6 +21,9 @@ export function ProductDetails() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [counterValue, setCounterValue] = useState(1);
     const { dispatch } = useCartContext();
+    const [isAnimating, setIsAnimating] = useState(false); 
+
+
 
     const addToCart = () => {
         if (data?.id) {
@@ -37,6 +40,26 @@ export function ProductDetails() {
 
         }
     };
+
+    const buyNow = () => {
+        if (data?.id) {
+
+            const product = {
+                id: data.id,
+                name: data.name,
+                image: data.image[0],
+                price: data.price,
+                quantity: counterValue,
+                
+            }
+        }
+
+        setIsAnimating(true);
+
+        setTimeout(() => {
+            setIsAnimating(false);
+        }, 1000);
+    }
 
     const handleNextImage = () => {
         if (data?.image) {
@@ -97,7 +120,12 @@ export function ProductDetails() {
                 <Dropdown />
                 <Counter initialNumber={counterValue} onChange={setCounterValue}/>
                 <button className="add-cart-button" onClick={addToCart}>Adicionar ao Carrinho</button>
-                <button className="buy-now-button">Comprar Agora</button>
+                <button 
+                    className={`buy-now-button ${isAnimating ? 'pulse-animation' : ''}`} 
+                    onClick={buyNow}
+                >
+                    {isAnimating ? 'Pedido enviado' : 'Comprar Agora'}
+                </button>
                 <p className="product-description">{data?.description}</p>
                 <div className="size-chart-container">
                     <img className="size-chart" src={sizeChart} />

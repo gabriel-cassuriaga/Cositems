@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fundatec.cositems.dto.UserRequestDTO;
 import com.fundatec.cositems.dto.UserResponseDTO;
+import com.fundatec.cositems.enums.Size;
 import com.fundatec.cositems.exceptions.AlreadyExistException;
 import com.fundatec.cositems.exceptions.EmptyExceptions;
 import com.fundatec.cositems.exceptions.NotFoundException;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @RestController
@@ -65,9 +67,11 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "Efetua o login e retora um Dto de usuário")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/login")
-    public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO data)
+    public ResponseEntity<UserResponseDTO> login(
+        @RequestParam(required = false) String email,
+        @RequestParam(required = false) String password)
             throws AuthException, NotFoundException {
-        UserResponseDTO user = userService.login(data);
+        UserResponseDTO user = userService.login(email, password);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

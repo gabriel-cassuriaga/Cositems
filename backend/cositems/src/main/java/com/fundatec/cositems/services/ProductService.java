@@ -9,6 +9,7 @@ import com.fundatec.cositems.enums.Size;
 import com.fundatec.cositems.exceptions.EmptyExceptions;
 import com.fundatec.cositems.exceptions.NotFoundException;
 import com.fundatec.cositems.model.ProductModel;
+import com.fundatec.cositems.model.SizeStorage;
 import com.fundatec.cositems.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -103,6 +104,16 @@ public class ProductService {
         return objectMapper.convertValue(productToBeUpdate, ProductResponseDTO.class);
 
     }
+
+//    public void deleteAmountAfterSellAProduct(ProductRequestDTO data) throws EmptyExceptions {
+//        if (data.storage() == null) {
+//            throw new EmptyExceptions("Sem tamanho/quantidade");
+//        }
+//        List<ProductModel> products = productRepository.findById(data.)
+//                    
+//    }
+//
+//    }
 
     public void deleteProduct(String id) throws NotFoundException, EmptyExceptions {
         if (id.isBlank()) throw new EmptyExceptions("id vazio");

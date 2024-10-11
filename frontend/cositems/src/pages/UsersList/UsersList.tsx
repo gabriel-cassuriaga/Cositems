@@ -6,6 +6,7 @@ import { UserData } from '../../interfaces/UserData';
 import { CreateUserModal } from '../../components/CreateUserModal/CreateUserModal';
 import { UpdateUserModal } from '../../components/UpdateUserModal/UpdateUserModal';
 import { useUserDataDelete } from '../../hooks/users/useUserDataDelete';
+import { Link } from 'react-router-dom';
 
 export function UsersList() {
     const { data: users, isLoading, error } = useUserData();
@@ -24,7 +25,7 @@ export function UsersList() {
         setUserToUpdate(user);
         setIsModalOpen(true);
     };
-
+    
     if (isLoading) {
         return <div>Carregando...</div>;
     }
@@ -61,6 +62,9 @@ export function UsersList() {
                     ))}
                 </tbody>
             </table>
+            <Link to={'/login'}>
+                <button className="floating-button-logout">Logout</button>
+            </Link>
             <button className="floating-button" onClick={openModal}>+</button>
             {isModalOpen && !userToUpdate && <CreateUserModal closeModal={closeModal} />}
             {isModalOpen && userToUpdate && (

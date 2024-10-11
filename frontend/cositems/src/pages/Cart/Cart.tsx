@@ -2,7 +2,7 @@ import { useCartContext } from "../../modules/cart/cartContext";
 import './Cart.css';
 
 import deleteImg from '../../assets/icons/cart/delete.png';
-import { Counter } from "../../components/Counter/Counter";
+import { Counter } from "../../components/counter/Counter";
 
 export function Cart() {
   const { cart, dispatch } = useCartContext();
