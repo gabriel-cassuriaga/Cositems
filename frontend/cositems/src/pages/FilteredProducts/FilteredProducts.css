@@ -1,3 +1,58 @@
 .filtered-products-container {
-    
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.filter-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    flex-shrink: 0; /* Adicionado para evitar encolhimento */
+
+}
+
+.filter-content h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.filter-content ul li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.filter-content ul li:hover,
+.filter-content ul li.selected {
+    background-color: #000000;
+    color: white;
+}
+
+.filter-content label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.filter-content input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

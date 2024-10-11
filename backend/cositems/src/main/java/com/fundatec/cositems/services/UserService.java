@@ -65,34 +65,31 @@ public class UserService {
         return userToReturn;
     }
 
-    public UserResponseDTO updateUser(UserRequestDTO data, String id) throws NotFoundException {
+    public UserResponseDTO updateUser(UserRequestDTO data, String id) throws EmptyExceptions {
 
-        if (!userRepository.findById(id).isPresent())
-            throw new NotFoundException("Usuário não encontrado");
+        if (!userRepository.findById(id).isPresent()) {
+            throw new EmptyExceptions("Usuário não encontrado");
+        }
 
         UserModel userToUpdate = userRepository.findById(id).get();
+
         userToUpdate.setEmail(data.email());
         userToUpdate.setPassword(data.password());
         userToUpdate.setUsername(data.username());
         userRepository.save(userToUpdate);
 
         return objectMapper.convertValue(userToUpdate, UserResponseDTO.class);
+
     }
 
-    public void deleteUser(UserRequestDTO data, String id) throws NotFoundException, AuthException {
+    public void deleteUser(String id) throws NotFoundException, EmptyExceptions {
+        if (id.isBlank())
+            throw new EmptyExceptions("id vazio");
+        if (!userRepository.findById(id).isPresent()) {
+            throw new NotFoundException("Usuario não encontrado");
+        }
 
-        if (!userRepository.findById(id).isPresent())
-            throw new NotFoundException("Usuário não encontrado");
-
-        UserModel user = userRepository.deleteUser(id, data.email(), data.password());
-
-        if (user == null)
-            throw new AuthException("Não autorizado");
-        userRepository.delete(user);
-    }
-
-    public List<UserModel> findAllForTest() {
-        return userRepository.findAll();
+        userRepository.deleteById(id);
     }
 
     public UserResponseDTO login(UserRequestDTO data) throws AuthException, NotFoundException {

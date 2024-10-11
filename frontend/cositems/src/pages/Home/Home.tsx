@@ -1,13 +1,9 @@
-import './Home.css'
 
-import { useProductData } from "../../hooks/useProductData";
-import { ImageCard } from "./ImageCard";
+import { ProductsCardList } from '../../components/ProductsCardList/ProductsCardList';
 // import { CreateModal } from "../../components/create-modal/CreateModal";
 
 
 export function Home() {
-
-    const { data } = useProductData();
     // const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -18,22 +14,7 @@ export function Home() {
     return (
 
         <>
-            <div className="teste">
-            <div className="home-container">
-                <div className="product-card-container">
-                    <div className="card-grid">
-                        {data?.map(productData => <ImageCard
-                            key={productData.id}
-                            id={productData.id}
-                            image={productData.image}
-                            name={productData.name}
-                            price={productData.price} />
-                        )}
-                    </div>
-                </div>
-            </div>
-            </div>
-            
+           <ProductsCardList></ProductsCardList>
             {/* {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
             <button onClick={handleOpenModal}>Novo Produto</button> */}
 

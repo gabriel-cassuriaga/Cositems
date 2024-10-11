@@ -1,18 +1,18 @@
 import axios, { AxiosPromise } from "axios"
-import { ProductData } from "../interfaces/ProductData";
+import { UserData } from "../../interfaces/UserData";
 import { useQuery } from "@tanstack/react-query";
 
 const API_URL = 'http://localhost:8080';
 
-const fetchData = async (id: string): AxiosPromise<ProductData> => {
-    const response = axios.get(API_URL + '/products/' + id);
+const fetchData = async (id: string): AxiosPromise<UserData> => {
+    const response = axios.get(API_URL + '/users/' + id);
     return response;
 }
 
-export function useProductDataById(id: string){
+export function useUserDataById(id: string){
     const query = useQuery({
         queryFn: () => fetchData(id),
-        queryKey: ['product-data', id],
+        queryKey: ['user-data', id],
         retry: 2
     })
 

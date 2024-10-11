@@ -44,13 +44,13 @@ public class ProductController {
         return new ResponseEntity<>(productService.createProduct(data), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Busca por todos os produtos")
-    @ApiResponse(responseCode = "", description = "Retorna um dto para cada produto")
-    @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAll() throws NotFoundException {
-        List<ProductResponseDTO> products = productService.findAll().stream().map(ProductResponseDTO::new).toList();
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
+    // @Operation(summary = "Busca por todos os produtos")
+    // @ApiResponse(responseCode = "", description = "Retorna um dto para cada produto")
+    // @GetMapping
+    // public ResponseEntity<List<ProductResponseDTO>> getAll() throws NotFoundException {
+    //     List<ProductResponseDTO> products = productService.findAll().stream().map(ProductResponseDTO::new).toList();
+    //     return new ResponseEntity<>(products, HttpStatus.OK);
+    // }
 
     @Operation(summary = "Busca um produto por id")
     @ApiResponse(responseCode = "200", description = "Retorna o Dto de um produto")

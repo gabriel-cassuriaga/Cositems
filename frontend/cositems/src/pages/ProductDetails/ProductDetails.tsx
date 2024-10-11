@@ -1,6 +1,6 @@
 import './ProductDetails.css';
 import { useParams } from "react-router-dom";
-import { useProductDataById } from "../../hooks/useProductDataById";
+import { useProductDataById } from "../../hooks/products/useProductDataById";
 import { useState } from 'react';
 
 import { ImageSlider } from './ImageSlider';

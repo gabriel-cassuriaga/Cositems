@@ -7,7 +7,6 @@ import com.fundatec.cositems.dto.UserResponseDTO;
 import com.fundatec.cositems.exceptions.AlreadyExistException;
 import com.fundatec.cositems.exceptions.EmptyExceptions;
 import com.fundatec.cositems.exceptions.NotFoundException;
-import com.fundatec.cositems.model.UserModel;
 import com.fundatec.cositems.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,13 +61,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
-//    @Operation(summary = "Busca todos os usuários para teste")
-//    @ApiResponse(responseCode = "302", description = "Retorna todos os usuarios para teste")
-//    @CrossOrigin(origins = "*", allowedHeaders = "*")
-//    @GetMapping("/testing-all")
-//    public List<UserModel> getAllUsersForTest() {
-//        return userService.findAllForTest();
-//    }
     @Operation(summary = "Efetua o login da aplicação")
     @ApiResponse(responseCode = "200", description = "Efetua o login e retora um Dto de usuário")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -84,18 +76,18 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
-            throws NotFoundException {
-        return new ResponseEntity<>(userService.updateUser(data, id), HttpStatus.OK);
+            throws NotFoundException, EmptyExceptions {
+        return new ResponseEntity<>(userService.updateUser(data,id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Deleum um usuário baseado no id com confirmação de email e senha.")
-    @ApiResponse(responseCode = "204", description = "Retorna um status sinalizando sucesso")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
+    @Operation(summary = "Deleta o produto por id")
+    @ApiResponse(responseCode = "204", description = "Deleta o usuario pelo id, Retorna o codigo sinalizando que foi deletado com sucesso")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@RequestBody UserRequestDTO data, @PathVariable("id") String id)
-            throws AuthException, NotFoundException {
-        userService.deleteUser(data, id);
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") String id) throws NotFoundException, EmptyExceptions {
+        userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
 }
