@@ -3,9 +3,12 @@ import './Cart.css';
 
 import deleteImg from '../../assets/icons/cart/delete.png';
 import { Counter } from "../../components/counter/Counter";
+import { useState } from 'react';
+
 
 export function Cart() {
   const { cart, dispatch } = useCartContext();
+  const [isAnimating, setIsAnimating] = useState(false); 
 
   const removeFromCart = (productId: string | undefined) => {
     if (productId) {
@@ -16,6 +19,13 @@ export function Cart() {
   const updateQuantity = (productId: string, quantity: number) => {
     dispatch({ type: 'UPDATE_QUANTITY', value: { productId, quantity } });
   };
+  const buyNow = () => {
+    setIsAnimating(true);
+
+    setTimeout(() => {
+        setIsAnimating(false);
+    }, 1000);
+}
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
@@ -58,6 +68,12 @@ export function Cart() {
           </div>
           <div className="clear-cart-container">
             <button className="clear-cart-btn" onClick={clearCart}>Limpar carrinho</button>
+            <button 
+                    className={`submit-buy-btn ${isAnimating ? 'pulse-animation' : ''}`} 
+                    onClick={buyNow}
+                >
+                    {isAnimating ? 'Pedido enviado' : 'Comprar Agora'}
+                </button>
           </div>
         </>
       )}

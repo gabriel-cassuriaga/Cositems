@@ -109,6 +109,7 @@
   
   .cart .clear-cart-container .clear-cart-btn {
     margin-top: 20px;
+    margin-right: 10px;
     width: 30%;
     padding: 10px;
     background-color: #1a1a1a;
@@ -120,10 +121,60 @@
     transition: 0.3s;
   }
   
+  .pulse-animation {
+    animation: pulse 1.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        background-color: #000000; /* Cor original */
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: #000000; /* Cor durante a animação */
+    }
+    100% {
+        transform: scale(1);
+        background-color: #000000; /* Retorna à cor original */
+    }
+}
+
+.order-message {
+    color: #000000; /* Cor da mensagem */
+    font-size: 18px;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease-in; /* Animação para a mensagem */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  .cart .clear-cart-container .submit-buy-btn {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 30%;
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
   .cart .clear-cart-container .clear-cart-btn:hover {
     background-color: #000000;
   }  
   
+    .cart .clear-cart-container .submit-buy-btn:hover {
+    background-color: #000000;
+  }  
   .cart .empty-cart-message {
     text-align: center;
     font-size: 18px;

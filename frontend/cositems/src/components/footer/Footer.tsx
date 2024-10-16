@@ -17,21 +17,17 @@ export function Footer() {
                     <div className="footer-section about-us">
                         <h3>Sobre nós</h3>
                         <p>
-                            Lorem ipsum dolor sit amet. Aut magnam nihil aut ipsum omnis aut porro maxime eos voluptas tempora.
-                            Et dicta sapiente et quia iste et ipsam modi ex quaerat soluta.
+                            Somos uma loja online especializada em Cosplays artesanais com amplo foco na experiência agradável e em oferecer uma solução na alta procura dos produtos do mundo geek!
                         </p>
                     </div>
 
                     <div className="footer-section categories">
                         <h3>Categorias</h3>
                         <ul>
-                            <li>Blusas e Camisas</li>
+                            <li>Cosplays completos</li>
                             <li>Calças</li>
-                            <li>Vestidos</li>
+                            <li>Camisas personalizadas</li>
                             <li>Saias</li>
-                            <li>Casacos e Jaquetas</li>
-                            <li>Shorts</li>
-                            <li>Acessórios (Cintos, Lenços, etc.)</li>
                         </ul>
                     </div>
 
@@ -41,7 +37,7 @@ export function Footer() {
                             <img src={callImg} alt='imagem de um telefone' /> +55 (99) 99999-9999
                         </p>
                         <p>
-                            <img src={mailImg} alt='imagem de uma carta de email' /> cositemsfakemail@gmail.com
+                            <img src={mailImg} alt='imagem de uma carta de email' /> cositems@gmail.com
                         </p>
                     </div>
                 </div>

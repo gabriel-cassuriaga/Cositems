@@ -32,10 +32,11 @@ export function LoginForm() {
                 <img src={eyeIconImg} className="icon-eye" />
             </div>
             <div className="box-btn">
+                <Link to={"/usuarios"}>
                 <button className="btn-login" onClick={handleLogin}>Login</button>
+                </Link>
             </div>
             <Link className="register-link" to={"/register"}>Não tem conta? Registre-se</Link>
-            <Link className="forgot-password-link" to={"/"}>Esqueceu a senha?</Link>
         </form>
 
     );

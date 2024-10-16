@@ -16,6 +16,13 @@ export function Navbar() {
         setSearchQuery(event.target.value);
     };
 
+    const scrollToFooter = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight,  
+            behavior: 'smooth'                
+        });
+    };
+
     const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (searchQuery.trim()) {
@@ -39,7 +46,7 @@ export function Navbar() {
                         <img src={searchImg} alt="Icone de pesquisa" />
                     </button>
                 </form>
-                <Link to={"/usuarios"}>
+                <Link to={"/login"}>
                 <img className="user-profile" src={profileImg} alt="icone de usuario" />
                 </Link>
                 
@@ -56,13 +63,13 @@ export function Navbar() {
                         <Link to={"/"}>Home</Link>
                     </li>
                     <li>
-                        <p>Produtos</p>
+                    <Link to={"/produtos"}>Produtos</Link>
                     </li>
                     <li>
-                        <p>Sobre</p>
+                    <p onClick={scrollToFooter}>Contato</p>
                     </li>
                     <li>
-                        <p>Contato</p>
+                    <p onClick={scrollToFooter}>Contato</p>
                     </li>
                 </ul>
             </div>
