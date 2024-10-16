@@ -66,7 +66,7 @@ export function Navbar() {
                     <Link to={"/produtos"}>Produtos</Link>
                     </li>
                     <li>
-                    <p onClick={scrollToFooter}>Contato</p>
+                    <p onClick={scrollToFooter}>Sobre</p>
                     </li>
                     <li>
                     <p onClick={scrollToFooter}>Contato</p>
